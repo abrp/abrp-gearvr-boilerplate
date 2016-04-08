@@ -24,11 +24,6 @@ public class ColorChanger : MonoBehaviour {
 		m_InteractiveItem.OnOut += HandleOut;
 	}
 
-	private void OnEnable(){
-		m_InteractiveItem.OnOver -= HandleOver;
-		m_InteractiveItem.OnOut -= HandleOut;
-	}
-
 	private void HandleOver(){
 		m_Renderer.material.color = m_OverColor;
 		m_GazeOver = true;

@@ -4,7 +4,7 @@ using VRStandardAssets.Utils;
 
 public class MoveableArea : MonoBehaviour {
 	[SerializeField] private VRInteractiveItem m_InteractiveItem;
-	[SerializeField] private Gaze m_Gaze;
+	[SerializeField] private MoveController m_MoveController;
 
 	private bool m_GazeOver;
 
@@ -12,11 +12,13 @@ public class MoveableArea : MonoBehaviour {
 		if (m_InteractiveItem == null) {
 			m_InteractiveItem = gameObject.AddComponent<VRInteractiveItem> ();
 		}
-		m_Gaze = Camera.main.GetComponent<Gaze> ();
+    m_MoveController = Camera.main.GetComponentInParent<MoveController> ();
 	}
 
 	private void OnEnable(){
 		m_InteractiveItem.OnClick += HandleClick;
+    //m_InteractiveItem.OnDoubleClick += HandleClick;
+    //m_InteractiveItem.OnUp += HandleClick;
 	}
 
 	private void OnDisable(){
@@ -24,6 +26,6 @@ public class MoveableArea : MonoBehaviour {
 	}
 
 	private void HandleClick(){
-		m_Gaze.MoveToGaze ();
+    m_MoveController.MoveToGaze ();
 	}
 }

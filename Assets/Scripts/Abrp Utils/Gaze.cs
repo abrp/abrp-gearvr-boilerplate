@@ -13,30 +13,17 @@ public class Gaze : MonoBehaviour {
 	// debug rays
 	private bool m_showDebugRay = true;
 	private float m_rayLenght = 100;
-	public Vector3 desiredPosition;
 
 	void Awake () {
 		if (m_reticle != null) {
 			m_reticle = Instantiate (m_reticle, new Vector3 (0, 0, 0), Quaternion.identity) as Reticle;
 		}
-
-		desiredPosition = transform.position;
-
 	}
 
 	void Update () {
 		EyeRaycast ();
-
-		if (desiredPosition != transform.position) {
-			transform.position = Vector3.MoveTowards (transform.position, desiredPosition, 0.1f) ;
-		}
 	}
-
-	public void MoveToGaze(){
-		desiredPosition = new Vector3 (m_reticle.transform.position.x, 2.5f, m_reticle.transform.position.z);
-	}
-
-
+    
 	private void EyeRaycast(){
 
 		// start position for raycast
